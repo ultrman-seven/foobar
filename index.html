@@ -335,8 +335,12 @@
 
 		pickBtn.addEventListener('click', randomPick);
 		resetBtn.addEventListener('click', clearHistory);
-		const sitePv = document.getElementById('busuanzi_value_site_pv').innerText;
+		
+window.addEventListener('DOMContentLoaded', () => {
+    const sitePv = document.getElementById('busuanzi_value_site_pv').innerText;
     console.log('本站总访问量(PV):', sitePv);
+});
+		
 	</script>
 <script type="module" src="./hf_files/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;b7a7514f0153408fad9ffc90b90519ce&quot;,&quot;r&quot;:1}" crossorigin="anonymous"></script>
 
