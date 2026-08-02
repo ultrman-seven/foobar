@@ -1,348 +1,53 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)https://91.yanjie233.top/?qq_aio_chat_type=3 -->
-<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>今天吃不吃和府捞面</title>
-	<style>
-		:root {
-			--bg: #07111f;
-			--bg-2: #0e1c33;
-			--panel: rgba(10, 20, 35, 0.72);
-			--panel-border: rgba(255, 255, 255, 0.12);
-			--text: #f3f7ff;
-			--muted: rgba(243, 247, 255, 0.7);
-			--accent: #77e6b6;
-			--accent-2: #7aa8ff;
-			--danger: #ff8c8c;
-			--shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-		}
-
-		* {
-			box-sizing: border-box;
-		}
-
-		html, body {
-			height: 100%;
-			margin: 0;
-		}
-
-		body {
-			font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-			color: var(--text);
-			background:
-				radial-gradient(circle at top left, rgba(119, 230, 182, 0.25), transparent 34%),
-				radial-gradient(circle at bottom right, rgba(122, 168, 255, 0.28), transparent 30%),
-				linear-gradient(160deg, var(--bg), var(--bg-2));
-			overflow: hidden;
-		}
-
-		body::before {
-			content: "";
-			position: fixed;
-			inset: 0;
-			background-image:
-				linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-				linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-			background-size: 36px 36px;
-			mask-image: radial-gradient(circle at center, rgba(0,0,0,0.9), transparent 88%);
-			pointer-events: none;
-		}
-
-		.wrap {
-			min-height: 100%;
-			display: grid;
-			place-items: center;
-			padding: 24px;
-		}
-
-		.card {
-			width: min(720px, 100%);
-			border: 1px solid var(--panel-border);
-			background: var(--panel);
-			backdrop-filter: blur(18px);
-			box-shadow: var(--shadow);
-			border-radius: 28px;
-			padding: 32px;
-			position: relative;
-			overflow: hidden;
-		}
-
-		.card::after {
-			content: "";
-			position: absolute;
-			inset: auto -40px -60px auto;
-			width: 180px;
-			height: 180px;
-			border-radius: 50%;
-			background: radial-gradient(circle, rgba(122, 168, 255, 0.24), transparent 68%);
-			pointer-events: none;
-		}
-
-		.eyebrow {
-			display: inline-flex;
-			align-items: center;
-			gap: 10px;
-			padding: 8px 14px;
-			border-radius: 999px;
-			background: rgba(255, 255, 255, 0.06);
-			color: var(--muted);
-			font-size: 14px;
-			letter-spacing: 0.04em;
-		}
-
-		.eyebrow .dot {
-			width: 10px;
-			height: 10px;
-			border-radius: 50%;
-			background: linear-gradient(135deg, var(--accent), var(--accent-2));
-			box-shadow: 0 0 18px rgba(119, 230, 182, 0.75);
-		}
-
-		h1 {
-			margin: 18px 0 10px;
-			font-size: clamp(34px, 6vw, 60px);
-			line-height: 1.02;
-			letter-spacing: 0.02em;
-		}
-
-		.desc {
-			margin: 0;
-			color: var(--muted);
-			font-size: 16px;
-			line-height: 1.7;
-			max-width: 56ch;
-		}
-
-		.result-box {
-			margin-top: 28px;
-			border-radius: 24px;
-			padding: 26px;
-			background: rgba(255, 255, 255, 0.04);
-			border: 1px solid rgba(255, 255, 255, 0.1);
-			min-height: 180px;
-			display: grid;
-			align-content: center;
-			gap: 12px;
-		}
-
-		.label {
-			color: var(--muted);
-			font-size: 14px;
-			text-transform: uppercase;
-			letter-spacing: 0.12em;
-		}
-
-		.result {
-			font-size: clamp(42px, 8vw, 76px);
-			font-weight: 800;
-			letter-spacing: 0.08em;
-			line-height: 1;
-			transform-origin: center;
-		}
-
-		.hint {
-			color: var(--muted);
-			font-size: 16px;
-			line-height: 1.7;
-			min-height: 3.4em;
-		}
-
-		.actions {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 14px;
-			margin-top: 24px;
-		}
-
-		button {
-			appearance: none;
-			border: 0;
-			cursor: pointer;
-			border-radius: 16px;
-			padding: 14px 22px;
-			font: inherit;
-			font-weight: 700;
-			transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
-		}
-
-		button:hover {
-			transform: translateY(-1px);
-		}
-
-		button:active {
-			transform: translateY(1px) scale(0.98);
-		}
-
-		.primary {
-			color: #04111e;
-			background: linear-gradient(135deg, #8df0c3, #7aa8ff);
-			box-shadow: 0 12px 30px rgba(122, 168, 255, 0.25);
-		}
-
-		.ghost {
-			color: var(--text);
-			background: rgba(255, 255, 255, 0.06);
-			border: 1px solid rgba(255, 255, 255, 0.1);
-		}
-
-		.history {
-			margin-top: 24px;
-			display: flex;
-			flex-wrap: wrap;
-			gap: 10px;
-			min-height: 40px;
-			align-items: center;
-		}
-
-		.chip {
-			padding: 8px 12px;
-			border-radius: 999px;
-			font-size: 14px;
-			color: var(--text);
-			background: rgba(255, 255, 255, 0.08);
-			border: 1px solid rgba(255, 255, 255, 0.08);
-		}
-
-		.chip.e {
-			color: #08301f;
-			background: linear-gradient(135deg, rgba(141, 240, 195, 0.95), rgba(122, 168, 255, 0.9));
-		}
-
-		.chip.ne {
-			color: #2f1010;
-			background: linear-gradient(135deg, rgba(255, 140, 140, 0.94), rgba(255, 214, 140, 0.9));
-		}
-
-		.shake {
-			animation: shake 0.42s ease-in-out;
-		}
-
-		.pop {
-			animation: pop 0.42s ease-out;
-		}
-
-		@keyframes shake {
-			0%, 100% { transform: translateX(0); }
-			20% { transform: translateX(-8px) rotate(-1deg); }
-			40% { transform: translateX(7px) rotate(1deg); }
-			60% { transform: translateX(-5px) rotate(-0.5deg); }
-			80% { transform: translateX(4px) rotate(0.5deg); }
-		}
-
-		@keyframes pop {
-			0% { transform: scale(0.82); opacity: 0.2; }
-			65% { transform: scale(1.04); opacity: 1; }
-			100% { transform: scale(1); }
-		}
-
-		.footer {
-			margin-top: 20px;
-			color: rgba(243, 247, 255, 0.48);
-			font-size: 13px;
-		}
-
-		@media (max-width: 640px) {
-			.card {
-				padding: 22px;
-				border-radius: 22px;
-			}
-
-			.result-box {
-				padding: 20px;
-				min-height: 160px;
-			}
-
-			button {
-				width: 100%;
-			}
-		}
-	</style>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加载页面</title>
+    <style>
+        /* 极简样式：仅让 iframe 铺满窗口 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; overflow: hidden; }
+        iframe { width: 100%; height: 100%; border: none; display: block; }
+        .tip {
+            display: flex; align-items: center; justify-content: center;
+            height: 100%; font-family: sans-serif; color: #666;
+        }
+    </style>
 </head>
 <body>
-	<script src="https://vercount.one" defer></script>
+    <script>
+        (function() {
+            // 1. 解析 URL 参数 frdName
+            const params = new URLSearchParams(window.location.search);
+            const frdName = params.get('frdName')?.trim();
 
-	<main class="wrap">
-		<section class="card" aria-labelledby="title">
-			<div class="eyebrow"><span class="dot"></span> 随机决定今天吃不吃和府捞面</div>
-			<h1 id="title">今天吃不吃和府捞面？</h1>
-			<p class="desc">按一下按钮，让系统随机告诉你今天是“吃”还是“不吃”。</p>
-			<p>本站总访问量 <span id="busuanzi_site_pv">加载中...</span> 次</p>
+            // 2. 无参数时显示提示
+            if (!frdName) {
+                document.body.innerHTML = '<div class="tip">请在 URL 中添加 ?frdName=名称 参数</div>';
+                return;
+            }
 
-			<div class="result-box" id="resultBox" aria-live="polite">
-				<div class="label">Today's verdict</div>
-				<div class="result" id="resultText">未选择</div>
-				<div class="hint" id="hintText">点击下方按钮开始抽取结果。</div>
-			</div>
+            // 3. 安全校验（防止路径遍历等）
+            function isValid(name) {
+                // 只允许字母、数字、中文、下划线、连字符、点（不能以点开头）
+                if (!name || name.length > 80) return false;
+                if (name.startsWith('.')) return false;
+                if (/\.\.|\\|\/|~/.test(name)) return false;
+                return /^[\u4e00-\u9fa5a-zA-Z0-9_\-\.]+$/.test(name);
+            }
 
-			<div class="actions">
-				<button class="primary" id="pickBtn">开始今天吃不吃</button>
-				<button class="ghost" id="resetBtn">清空记录</button>
-			</div>
-
-			<div class="history" id="history" aria-label="历史记录"></div>
-			<div class="footer">提示：结果完全随机，不负责解释命运。</div>
-		</section>
-	</main>
-
-	<script>
-		const pickBtn = document.getElementById('pickBtn');
-		const resetBtn = document.getElementById('resetBtn');
-		const resultBox = document.getElementById('resultBox');
-		const resultText = document.getElementById('resultText');
-		const hintText = document.getElementById('hintText');
-		const history = document.getElementById('history');
-
-		const outcomes = [
-			{
-				key: 'e',
-				text: '今天吃和府捞面',
-				hint: '状态拉满，适合约会、看电影、和hxd的关系又近了一步。'
-			},
-			{
-				key: 'ne',
-				text: '今天不吃和府捞面',
-				hint: '先抗火车回家，少一点冲动，多一点观察，等下一轮再发力。'
-			}
-		];
-
-		function renderHistoryItem(outcome) {
-			const chip = document.createElement('span');
-			chip.className = `chip ${outcome.key}`;
-			chip.textContent = outcome.text;
-			history.prepend(chip);
-		}
-
-		function randomPick() {
-			const outcome = outcomes[Math.floor(Math.random() * outcomes.length)];
-
-			resultBox.classList.remove('shake', 'pop');
-			void resultBox.offsetWidth;
-			resultBox.classList.add('shake');
-			resultText.classList.remove('pop');
-			void resultText.offsetWidth;
-			resultText.classList.add('pop');
-
-			resultText.textContent = outcome.text;
-			hintText.textContent = outcome.hint;
-			renderHistoryItem(outcome);
-		}
-
-		function clearHistory() {
-			history.innerHTML = '';
-			resultText.textContent = '未选择';
-			hintText.textContent = '点击下方按钮开始抽取结果。';
-		}
-
-		pickBtn.addEventListener('click', randomPick);
-		resetBtn.addEventListener('click', clearHistory);
-		
-window.addEventListener('DOMContentLoaded', () => {
-    console.log('本站总访问量(PV):', document.getElementById('busuanzi_site_pv'));
-});
-		
-	</script>
-<script type="module" src="./hf_files/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;b7a7514f0153408fad9ffc90b90519ce&quot;,&quot;r&quot;:1}" crossorigin="anonymous"></script>
-
-
-</body></html>
+            if (!isValid(frdName)) {
+                document.body.innerHTML = '<div class="tip">⚠️ 参数不合法，请检查</div>';
+                return;
+            }
+            if(frdName=='zg'){
+                window.location.href = './zg.html';
+            }
+            else if(frdName=='hf'){
+                window.location.href = './hflm.html';
+            }
+        })();
+    </script>
+</body>
+</html>
