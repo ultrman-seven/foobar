@@ -80,11 +80,13 @@
     <div id="scroll-viewport">
         <div id="scroll-content"></div>
     </div>
-<audio autoplay loop style="display:none;">
-    <source src="res/zg.aac" type="audio/mpeg">
+<audio autoplay loop style="display:none;" id="audioPlayer">
+    <source src="res/zg.mp3" type="audio/mpeg">
 </audio>
 
     <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+
         const CONFIG = {
             texts: [
                 // '次比',
@@ -274,6 +276,7 @@
             isAnimating = true;
             if (animationId) cancelAnimationFrame(animationId);
             animationId = requestAnimationFrame(update);
+            audioPlayer.play();
         }
 
         let resizeTimeout = null;
@@ -301,11 +304,14 @@
             }
         });
 
-        if (document.readyState === 'complete') {
+        // if (document.readyState === 'complete') {
+        //     start();
+        // } else {
+        //     window.addEventListener('load', start);
+        // }
+        document.addEventListener('click', () => {
             start();
-        } else {
-            window.addEventListener('load', start);
-        }
+        });
 
         window.__scrollControl = {
             config: CONFIG,

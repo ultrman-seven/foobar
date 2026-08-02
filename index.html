@@ -54,7 +54,7 @@
     </style>
   </head>
   <body>
-    <button id="btn" style="display: none" class="btn">点我</button>
+    <!-- <button id="btn" style="display: none" class="btn">点我</button> -->
     <script>
       (function () {
         // 1. 解析 URL 参数 frdName
@@ -83,11 +83,7 @@
           return;
         }
         if (frdName == "zg") {
-          const btn = document.getElementById("btn");
-          btn.style.display = "block";
-          btn.addEventListener("click", () => {
-            window.location.href = "./zg.html";
-          });
+        window.location.href = "./zg.html";
         } else if (frdName == "hf") {
           window.location.href = "./hflm.html";
         }
